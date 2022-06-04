@@ -2,9 +2,10 @@
 
 #include "Core/CubeRunningGameMode.h"
 #include "Character/CubeRunningCharacter.h"
+#include "Core/CRGameplayController.h"
 #include "GameFramework/GameMode.h"
 #include "Kismet/GameplayStatics.h"
-#include "UObject/ConstructorHelpers.h"
+
 
 ACubeRunningGameMode::ACubeRunningGameMode()
 	: Super(){}
@@ -13,6 +14,17 @@ void ACubeRunningGameMode::GameСharacterDied()
 {
 	GetWorldTimerManager().ClearTimer(UpdateLifetimeTimerHandle);
 	LevelReboot();
+}
+
+void ACubeRunningGameMode::CharacterWin()
+{
+	GetWorldTimerManager().ClearTimer(UpdateLifetimeTimerHandle);
+
+	ACRGameplayController* GameplayController = Cast<ACRGameplayController>(GetWorld()->GetFirstPlayerController());
+	if(IsValid(GameplayController))
+	{
+		GameplayController->CharacterWin();
+	}
 }
 
 void ACubeRunningGameMode::LevelReboot()

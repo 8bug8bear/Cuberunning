@@ -4,6 +4,7 @@
 #include "Equipment/Components/BarrelComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
+#include "Data/DefaultValues.h"
 
 // Sets default values for this component's properties
 UBarrelComponent::UBarrelComponent()
@@ -35,7 +36,7 @@ void UBarrelComponent::Shoot(FVector Start, FVector Direction, AController* Cont
 	FHitResult ShootResult;
 	FCollisionQueryParams Params;
 	Params.AddIgnoredActor(IgnoreActor);
-	if(GetWorld()->LineTraceSingleByChannel(ShootResult,Start,ShootEnd, ECC_GameTraceChannel1, Params))
+	if(GetWorld()->LineTraceSingleByChannel(ShootResult,Start,ShootEnd, COLLISION_WEAPON, Params))
 	{
 		ShootEnd = ShootResult.ImpactPoint;
 		AActor* HitActor = ShootResult.GetActor();

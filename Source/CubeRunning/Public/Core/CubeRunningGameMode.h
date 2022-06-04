@@ -29,6 +29,8 @@ public:
 	
 	void GameСharacterDied();
 
+	void CharacterWin();
+
 	int32 GetLifeTime(){return LifeTime;}
 
 	// Increases the LifeTime by the passed value and returns a new LifeTime. If the passed value is incorrect, it returns -1
