@@ -49,6 +49,8 @@ void ACubeRunningGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	GetWorldTimerManager().SetTimer(UpdateLifetimeTimerHandle,this,&ACubeRunningGameMode::UpdateLifetime,1.f, true);
+
+	GetWorldTimerManager().SetTimer(UpdateMatchTimeTimerHandle,this,&ACubeRunningGameMode::UpdateMatchTimeTime,1.f,true);
 }
 
 void ACubeRunningGameMode::UpdateLifetime()

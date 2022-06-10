@@ -18,6 +18,11 @@ protected:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly, Category="Time")
 	int32 LifeTime;
 	
+	UPROPERTY(BlueprintReadOnly, Category="Time")
+	int32 MatchTime = 0;
+
+	FTimerHandle UpdateMatchTimeTimerHandle;
+
 public:
 	TWeakObjectPtr<class ACubeRunningCharacter> GameСharacter;
 	
@@ -33,6 +38,8 @@ public:
 
 	int32 GetLifeTime(){return LifeTime;}
 
+	int32 GetMatchTime(){return MatchTime;}
+
 	// Increases the LifeTime by the passed value and returns a new LifeTime. If the passed value is incorrect, it returns -1
 	int32 AddLifeTime(int32 Added);
 	
@@ -43,6 +50,9 @@ protected:
 	void UpdateLifetime();
 
 	void LevelReboot();
+
+	UFUNCTION()
+	void UpdateMatchTimeTime(){MatchTime++;};
 };
 
 
