@@ -93,6 +93,7 @@ void ACRDrone::OnTakeDamage(AActor* DamagedActor, float Damage, const UDamageTyp
 
 	ACubeRunningGameMode* CubeRunningGameMode = Cast<ACubeRunningGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 	CubeRunningGameMode->AddLifeTime(IncreaseLifeTime);
+	CubeRunningGameMode->AddKilledDragons();
 
 	Destroy();
 }

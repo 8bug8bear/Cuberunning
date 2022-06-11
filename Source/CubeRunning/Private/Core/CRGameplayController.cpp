@@ -20,14 +20,14 @@ void ACRGameplayController::CharacterWin()
 
 	UWidgetLayoutLibrary::RemoveAllWidgets(GetWorld());
 
-	if(!EndLevelUWClass)
+	if(EndLevelUWClass)
 	{
-		return;
-	}
-
-	UUserWidget* EndLevel = CreateWidget(this, EndLevelUWClass);
-	if(EndLevel)
-	{
-		EndLevel->AddToViewport();
+		UUserWidget* EndLevel = CreateWidget(this, EndLevelUWClass);
+		if(EndLevel)
+		{
+			EndLevel->AddToViewport();
+			SetInputMode(FInputModeUIOnly());
+			SetShowMouseCursor(true);
+		}
 	}
 }

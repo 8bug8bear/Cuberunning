@@ -21,10 +21,10 @@ protected:
 	class UImage* SelectionLevelImage;
 
 	UPROPERTY(meta=(BindWidget))
-	UTextBlock* PassageTime;
+	UTextBlock* PassageTimeText;
 
 	UPROPERTY(meta=(BindWidget))
-	class UTextBlock* KilledDragons;
+	UTextBlock* KilledDragonsText;
 
 	UPROPERTY(meta=(BindWidget))
 	class UButton* SelectLevel;

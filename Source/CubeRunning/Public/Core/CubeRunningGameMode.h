@@ -21,6 +21,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="Time")
 	int32 MatchTime = 0;
 
+	UPROPERTY(BlueprintReadOnly, Category="Time")
+	int32 KilledDragons = 0;
+
 	FTimerHandle UpdateMatchTimeTimerHandle;
 
 public:
@@ -36,12 +39,16 @@ public:
 
 	void CharacterWin();
 
-	int32 GetLifeTime(){return LifeTime;}
+	int32 GetLifeTime() const {return LifeTime;}
 
-	int32 GetMatchTime(){return MatchTime;}
+	int32 GetMatchTime() const {return MatchTime;}
 
 	// Increases the LifeTime by the passed value and returns a new LifeTime. If the passed value is incorrect, it returns -1
 	int32 AddLifeTime(int32 Added);
+
+	int32 GetKilledDragons() const {return KilledDragons;}
+
+	void AddKilledDragons(){KilledDragons++;}
 	
 protected:
 	virtual void BeginPlay() override;

@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "CREndLevelUW.generated.h"
 
+class UTextBlock;
+
 UCLASS()
 class CUBERUNNING_API UCREndLevelUW : public UUserWidget
 {
@@ -14,5 +16,11 @@ class CUBERUNNING_API UCREndLevelUW : public UUserWidget
 
 protected:
 	UPROPERTY(meta=(BindWidget))
-	class UTextBlock* PassageTime;
+	UTextBlock* PassageTimeText;
+
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* KilledDragonsText;
+
+public:
+	virtual void NativeConstruct() override;
 };
