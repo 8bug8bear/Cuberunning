@@ -4,7 +4,7 @@
 #include "Equipment/Components/BarrelComponent.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/GameplayStatics.h"
-#include "Data/DefaultValues.h"
+#include "Pluggable/Definitions.h"
 
 // Sets default values for this component's properties
 UBarrelComponent::UBarrelComponent()

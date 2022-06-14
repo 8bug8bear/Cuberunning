@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CRSaveGame.h"
 #include "Engine/GameInstance.h"
 #include "CRGameInstance.generated.h"
 
@@ -13,5 +14,17 @@ UCLASS()
 class CUBERUNNING_API UCRGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-	
+
+public:
+	UPROPERTY(BlueprintReadOnly, Category="SaveGame")
+	UCRSaveGame* CurrentSaveGame;
+
+	UPROPERTY(BlueprintReadOnly, Category="LevelData")
+	int32 SelectionLevelNumber;
+
+	UFUNCTION(BlueprintCallable, Category="SaveGame")
+	bool LoadGame();
+
+	UFUNCTION(BlueprintCallable, Category="SaveGame")
+	bool SaveGame();
 };

@@ -31,6 +31,9 @@ protected:
 
 	FName SelectionLevelName;
 
+	UPROPERTY()
+	class UCRGameInstance* CurentGameInstance;
+
 	UFUNCTION()
 	void OpenSelectedlevel();
 	

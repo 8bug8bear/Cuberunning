@@ -4,7 +4,10 @@
 #include "HUD/CRLevelSelectionUW.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
+#include "Components/TextBlock.h"
+#include "Core/CRGameInstance.h"
 #include "Kismet/GameplayStatics.h"
+#include "Pluggable/Definitions.h"
 
 
 void UCRLevelSelectionUW::OpenSelectedlevel()
@@ -24,10 +27,20 @@ void UCRLevelSelectionUW::SetDatasSelectionLevel(UTexture2D* Image, FName LevelN
 {
 	SelectionLevelImage->SetBrushFromTexture(Image);
 	SelectionLevelName = LevelName;
+	
+	if(CurentGameInstance != nullptr)
+	{
+		CurentGameInstance->SelectionLevelNumber = LevelNumber;
 
-	/*
-	 * Loading informations of level from game save
-	 */
+		if(CurentGameInstance->CurrentSaveGame!=nullptr)
+		{
+			int32 PassageTime = CurentGameInstance->CurrentSaveGame->LevelItemsArr[LevelNumber].PassageTime;
+			int32 KilledDrons = CurentGameInstance->CurrentSaveGame->LevelItemsArr[LevelNumber].KilledDragons;
+			
+			PassageTimeText->SetText(IntToTimeText(PassageTime));
+			KilledDragonsText->SetText(FText::FromString(FString::FromInt(KilledDrons)));
+		}
+	}
 }
 
 void UCRLevelSelectionUW::NativeConstruct()
@@ -35,4 +48,6 @@ void UCRLevelSelectionUW::NativeConstruct()
 	Super::NativeConstruct();
 	
 	SelectLevel->OnClicked.AddDynamic(this,&UCRLevelSelectionUW::OpenSelectedlevel);
+	
+	CurentGameInstance = Cast<UCRGameInstance>(GetGameInstance());
 }

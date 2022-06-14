@@ -2,6 +2,7 @@
 
 #include "Core/CubeRunningGameMode.h"
 #include "Character/CubeRunningCharacter.h"
+#include "Core/CRGameInstance.h"
 #include "Core/CRGameplayController.h"
 #include "GameFramework/GameMode.h"
 #include "Kismet/GameplayStatics.h"
@@ -24,6 +25,20 @@ void ACubeRunningGameMode::CharacterWin()
 	if(IsValid(GameplayController))
 	{
 		GameplayController->CharacterWin();
+	}
+	int32 SelectionLevelNumber;
+	UCRGameInstance* GameInstance = Cast<UCRGameInstance>(GetGameInstance());
+	if(GameInstance)
+	{
+		SelectionLevelNumber = GameInstance->SelectionLevelNumber;
+		if(GameInstance->CurrentSaveGame)
+		{
+			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].KilledDragons = KilledDragons;
+			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].PassageTime = MatchTime;
+			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].bIsLevelPassed=true;
+
+			GameInstance->SaveGame();
+		}
 	}
 }
 
