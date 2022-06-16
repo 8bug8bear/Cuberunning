@@ -21,6 +21,9 @@ protected:
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* KilledDragonsText;
 
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* BestPassageTimetext;
+
 public:
 	virtual void NativeConstruct() override;
 };

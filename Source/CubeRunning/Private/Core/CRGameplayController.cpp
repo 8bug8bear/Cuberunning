@@ -26,7 +26,10 @@ void ACRGameplayController::CharacterWin()
 		if(EndLevel)
 		{
 			EndLevel->AddToViewport();
-			SetInputMode(FInputModeUIOnly());
+			FInputModeUIOnly InputMode;
+			InputMode.SetWidgetToFocus(EndLevel->TakeWidget());
+			InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+			SetInputMode(InputMode);
 			SetShowMouseCursor(true);
 		}
 	}

@@ -26,19 +26,19 @@ void ACubeRunningGameMode::CharacterWin()
 	{
 		GameplayController->CharacterWin();
 	}
-	int32 SelectionLevelNumber;
+	
 	UCRGameInstance* GameInstance = Cast<UCRGameInstance>(GetGameInstance());
-	if(GameInstance)
+	if(GameInstance && GameInstance->CurrentSaveGame)
 	{
-		SelectionLevelNumber = GameInstance->SelectionLevelNumber;
-		if(GameInstance->CurrentSaveGame)
+		int32 SelectionLevelNumber = GameInstance->SelectionLevelNumber;
+		if(GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].bIsLevelPassed && GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].PassageTime<MatchTime)
 		{
-			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].KilledDragons = KilledDragons;
-			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].PassageTime = MatchTime;
-			GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].bIsLevelPassed=true;
-
-			GameInstance->SaveGame();
+			return;
 		}
+		GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].KilledDragons = KilledDragons;
+		GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].PassageTime = MatchTime;
+		GameInstance->CurrentSaveGame->LevelItemsArr[SelectionLevelNumber].bIsLevelPassed=true;
+		GameInstance->SaveGame();
 	}
 }
 
