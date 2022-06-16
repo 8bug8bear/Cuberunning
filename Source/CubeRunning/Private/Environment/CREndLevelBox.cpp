@@ -4,6 +4,7 @@
 #include "Environment/CREndLevelBox.h"
 #include "Components/BoxComponent.h"
 #include "Core/CubeRunningGameMode.h"
+#include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -15,6 +16,8 @@ ACREndLevelBox::ACREndLevelBox()
 
 void ACREndLevelBox::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if(!OtherActor->IsA<ACharacter>()) return;
+	
 	ACubeRunningGameMode* GameMode = Cast<ACubeRunningGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
 
 	if(IsValid(GameMode))
