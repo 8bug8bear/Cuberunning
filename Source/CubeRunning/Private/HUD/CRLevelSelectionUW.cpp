@@ -28,11 +28,11 @@ void UCRLevelSelectionUW::SetDatasSelectionLevel(UTexture2D* Image, FName LevelN
 	SelectionLevelImage->SetBrushFromTexture(Image);
 	SelectionLevelName = LevelName;
 	
-	if(CurentGameInstance != nullptr)
+	if(CurentGameInstance)
 	{
 		CurentGameInstance->SelectionLevelNumber = LevelNumber;
 
-		if(CurentGameInstance->CurrentSaveGame!=nullptr)
+		if(CurentGameInstance->CurrentSaveGame)
 		{
 			int32 PassageTime = CurentGameInstance->CurrentSaveGame->LevelItemsArr[LevelNumber].PassageTime;
 			int32 KilledDrons = CurentGameInstance->CurrentSaveGame->LevelItemsArr[LevelNumber].KilledDragons;
@@ -50,4 +50,6 @@ void UCRLevelSelectionUW::NativeConstruct()
 	SelectLevel->OnClicked.AddDynamic(this,&UCRLevelSelectionUW::OpenSelectedlevel);
 	
 	CurentGameInstance = Cast<UCRGameInstance>(GetGameInstance());
+
+	SetDefaultVaiyOnConstruct();
 }

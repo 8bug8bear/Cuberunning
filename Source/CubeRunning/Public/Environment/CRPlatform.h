@@ -28,10 +28,19 @@ protected:
 	UStaticMesh* PlatformMeshFlat;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly,Category="Meshs")
+	UMaterialInterface* PlatformMaterialFlat;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly,Category="Meshs")
 	UStaticMesh* PlatformMeshCruciform;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly,Category="Meshs")
+	UMaterialInterface* PlatformMaterialCruciform;
 	
 	UPROPERTY(VisibleDefaultsOnly,BlueprintReadOnly,Category="Meshs")
 	UStaticMeshComponent* PlatformMesh;
+
+	UPROPERTY()
+	UMaterialInstanceDynamic* PlatformMaterialInstance;
 
 	virtual void BeginPlay() override;
 	

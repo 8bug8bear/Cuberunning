@@ -21,21 +21,21 @@ void ACRplatform::OnConstruction(const FTransform& Transform)
 	switch (PlatformsTupe)
 	{
 	case EPlatformsTupe::flat:
-		if(PlatformMeshFlat != nullptr)
+		if(PlatformMeshFlat)
 		{
 			PlatformMesh->SetStaticMesh(PlatformMeshFlat);
 		}
 		break;
 		
 	case EPlatformsTupe::cruciform:
-		if(PlatformMeshFlat != nullptr)
+		if(PlatformMeshFlat)
 		{
 			PlatformMesh->SetStaticMesh(PlatformMeshCruciform);
 		}
 		break;
 		
 	default:
-		if(PlatformMeshFlat != nullptr)
+		if(PlatformMeshFlat)
 		{
 			PlatformMesh->SetStaticMesh(PlatformMeshCruciform);
 		}
@@ -46,6 +46,31 @@ void ACRplatform::OnConstruction(const FTransform& Transform)
 void ACRplatform::BeginPlay()
 {
 	Super::BeginPlay();
+
+	switch (PlatformsTupe)
+	{
+	case EPlatformsTupe::flat:
+		if(PlatformMaterialFlat)
+		{
+			PlatformMaterialInstance = UMaterialInstanceDynamic::Create(PlatformMaterialFlat,PlatformMesh);
+		}
+		break;
+		
+	case EPlatformsTupe::cruciform:
+		if(PlatformMaterialFlat)
+		{
+			PlatformMaterialInstance = UMaterialInstanceDynamic::Create(PlatformMaterialCruciform,PlatformMesh);
+		}
+		break;
+		
+	default:
+		if(PlatformMaterialFlat)
+		{
+			PlatformMaterialInstance = UMaterialInstanceDynamic::Create(PlatformMaterialFlat,PlatformMesh);
+		}
+	}
+	
+	PlatformMesh->SetMaterial(0,PlatformMaterialInstance);
 }
 
 

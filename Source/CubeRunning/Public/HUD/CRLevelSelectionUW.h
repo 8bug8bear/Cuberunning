@@ -36,6 +36,9 @@ protected:
 
 	UFUNCTION()
 	void OpenSelectedlevel();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetDefaultVaiyOnConstruct();
 	
 public:
 	UFUNCTION(BlueprintCallable, Category="UsersFunctions")
