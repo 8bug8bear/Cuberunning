@@ -152,7 +152,7 @@ void ACubeRunningCharacter::OnplayerCapsulHit(UPrimitiveComponent* HitComponent,
 
 bool ACubeRunningCharacter::IsSurfaceWallRunnable(const FVector& SurfaceNormal) const
 {
-	return SurfaceNormal.Z < GetCharacterMovement()->GetWalkableFloorZ() && SurfaceNormal.Z>-0.005f;
+	return SurfaceNormal.Z <GetCharacterMovement()->GetWalkableFloorZ() && SurfaceNormal.Z>-0.005f;
 }
 
 bool ACubeRunningCharacter::AreRequiredKeysDown(EWallRunSide Side) const
@@ -231,7 +231,7 @@ void ACubeRunningCharacter::UpdateWallRun()
 
 void ACubeRunningCharacter::StartSprinting()
 {
-	if(IsSprinting == true)
+	if(IsSprinting)
 	{
 		return;
 	}
@@ -242,7 +242,7 @@ void ACubeRunningCharacter::StartSprinting()
 
 void ACubeRunningCharacter::StopSprinting()
 {
-	if(IsSprinting == false)
+	if(!IsSprinting)
 	{
 		return;
 	}

@@ -14,13 +14,7 @@ class CUBERUNNING_API UCharacterEquipmentComponent : public UActorComponent
 	GENERATED_BODY()
 
 	
-public:	
-	// Sets default values for this component's properties
-	UCharacterEquipmentComponent();
 
-	// Returns a link to the equipped weapon
-	ABaseWeapon* GetEquippedWeapon()const {return EquipWeapon;}
-	
 protected:
 	UPROPERTY()
 	ABaseWeapon* EquipWeapon;
@@ -31,10 +25,17 @@ protected:
 
 	// Weak reference to the gun owner
 	TWeakObjectPtr<class ACubeRunningCharacter> CachedCharacterOwner;
-	
+
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	//
 	void CreateLodout();
+
+public:	
+	// Sets default values for this component's properties
+	UCharacterEquipmentComponent();
+
+	// Returns a link to the equipped weapon
+	ABaseWeapon* GetEquippedWeapon()const {return EquipWeapon;}
 };

@@ -21,6 +21,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category="LevelData")
 	int32 SelectionLevelNumber;
+	
+	UPROPERTY(BlueprintReadWrite,Category="Settings")
+	float MouseSensitivity = 1.f;
 
 	UFUNCTION(BlueprintCallable, Category="SaveGame")
 	bool LoadGame();

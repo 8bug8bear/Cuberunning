@@ -30,5 +30,5 @@ protected:
 public:
 	AShootingWeapon();
 
-	void Use() override;
+	virtual void Use() override;
 };

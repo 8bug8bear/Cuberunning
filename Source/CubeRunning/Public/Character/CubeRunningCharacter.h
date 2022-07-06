@@ -87,6 +87,7 @@ public:
 	TSubclassOf<UGameplayUW> GameplayUWClass;
 
 	UGameplayUW* GameplayUW;
+	
 protected:
 	virtual void BeginPlay();
 	

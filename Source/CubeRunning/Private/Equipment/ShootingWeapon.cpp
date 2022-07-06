@@ -22,16 +22,10 @@ void AShootingWeapon::Use()
 {
 	Super::Use();
 
-	if(!CachedCharacterOwner.IsValid())
+	if(!CachedCharacterOwner.IsValid() || !CheckCanUse())
 	{
 		return;
 	}
-	
-	if(!CheckCanUse())
-	{
-		return;
-	}
-
 	SetUseDelay();
 	AController* Controller = CachedCharacterOwner->GetController();
 	FVector ShootStatr;
